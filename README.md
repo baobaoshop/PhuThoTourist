@@ -1,5 +1,8 @@
 <h1>Phú Thọ Tourist</h1>
-<p>Phú Thọ Tourist là một dự án thực tập tại Công ty ALTA</p>
+<p>Đây là một dự án thực tập của <b>Bùi Quốc Bảo</b> tại Công ty ALTA.</p>
+<p><b>Nhóm:</b> [Internship]_PHP_2024_05_11.11.2024</p>
+<p><b>Ngày nhận dự án:</b> 20.11.2024</p>
+<p><b>Deadline:</b> 4 tuần</p>
 <hr/>
 
 <h3>Giới thiệu</h3>
