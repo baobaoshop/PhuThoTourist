@@ -16,7 +16,7 @@
 
 <h3>Installation</h3>
 <ol>
-  <li>Clone the repository: <a href="https://github.com/baobaoshop/PhuThoTourist.git">https://github.com/baobaoshop/PhuThoTourist.git<a/></li>
+  <li>Clone the repository: <a href="https://github.com/baobaoshop/PhuThoTourist.git">https://github.com/baobaoshop/PhuThoTourist.git</a></li>
   <li>Start project: php artisan serve</li>
 </ol>
 <hr/>
