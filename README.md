@@ -11,7 +11,10 @@
   <li>Các vấn đề cần giải quyết</li>
   <li>Các tính năng:
     <ul>
-      <li></li>  
+      <li>Trang chủ:</li>
+      <li>Bài viết:</li>  
+      <li>Tài liệu:</li>  
+      <li>Tuyển dụng:</li>  
     </ul>
   </li>
 </ol>
