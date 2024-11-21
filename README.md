@@ -8,4 +8,4 @@
   <li>Các tính năng </li>
 </ol>
 
-<img src="https://lh4.googleusercontent.com/proxy/scUVF0bDoWmauk4D9M9K6aIiN5guTgsVc5_F8g-zQnsmIpFs7q152ZRNZDEL8-4t5XWshfvGZaa2omdz9bwHfR1kQn1vMcaTTA0o5KsL4JHeL3XSmOr5cj7Dq7460cXcjbW2" heigh=300 ưidth=300/>
+<img src="https://lh4.googleusercontent.com/proxy/scUVF0bDoWmauk4D9M9K6aIiN5guTgsVc5_F8g-zQnsmIpFs7q152ZRNZDEL8-4t5XWshfvGZaa2omdz9bwHfR1kQn1vMcaTTA0o5KsL4JHeL3XSmOr5cj7Dq7460cXcjbW2" heigh=300 width=300/>
