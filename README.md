@@ -28,6 +28,7 @@
   <li>Framework: Laravel</li>
   <li>Database: MySQL</li>
 </ul>
+<hr/>
 
 <h3>Roadmap</h3>
 <p>Lộ trình phát triển của dự án:</p>
