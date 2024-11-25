@@ -3,6 +3,16 @@
 <p><b>Nhóm:</b> [Internship]_PHP_2024_05_11.11.2024</p>
 <p><b>Ngày nhận dự án:</b> 20.11.2024</p>
 <p><b>Deadline:</b> 4 tuần</p>
+<p><b>Ngày hết hạn dự kiến:</b> 18.12.2024</p>
+
+<p>Tiến độ dự án:</p>
+<ul>
+  <li>[x] Tìm hiểu nghiệp vụ</li>
+  <li>[x] Thiết kế database</li>
+  <li>[ ] Thiết kế giao diện</li>
+  <li>[ ] Phát triển chức năng</li>
+  <li>[ ] ...</li>
+</ul>
 <hr/>
 
 <h3>Giới thiệu</h3>
@@ -34,17 +44,6 @@
   <li>Language: PHP</li>
   <li>Framework: Laravel</li>
   <li>Database: MySQL</li>
-</ul>
-<hr/>
-
-<h3>Roadmap</h3>
-<p>Lộ trình phát triển của dự án:</p>
-<ul>
-  <li>[x] Tìm hiểu nghiệp vụ</li>
-  <li>[ ] Thiết kế database</li>
-  <li>[ ] Thiết kế giao diện</li>
-  <li>[ ] Phát triển chức năng</li>
-  <li>[ ] ...</li>
 </ul>
 <hr/>
 
