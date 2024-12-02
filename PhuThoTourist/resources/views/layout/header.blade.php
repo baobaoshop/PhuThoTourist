@@ -16,10 +16,10 @@
             </a>
         </div>
         <div class="navbar_text">
-            <a href="#">Tài liệu</a>
+            <a href="document">Tài liệu</a>
         </div>
         <div class="navbar_text">
-            <a href="#">Tuyển dụng</a>
+            <a href="recruitment">Tuyển dụng</a>
         </div>
     </div>
 </div>
