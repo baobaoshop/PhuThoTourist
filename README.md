@@ -3,6 +3,17 @@
 <p><b>Nhóm:</b> [Internship]_PHP_2024_05_11.11.2024</p>
 <p><b>Ngày nhận dự án:</b> 20.11.2024</p>
 <p><b>Deadline:</b> 4 tuần</p>
+<p><b>Ngày hết hạn dự kiến:</b> 18.12.2024</p>
+
+<p>Tiến độ dự án:</p>
+<ul>
+  <li>[x] Tìm hiểu nghiệp vụ</li>
+  <li>[x] Thiết kế database</li>
+  <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjw4BCzz4rfPdUkrHTiU747Q_wjn361_tIXcllLYdcSjK4Hj-ZsW6SQ9JSBJtzS1bzz7OYjIrBh0ozfyUrmfC7yPBP7k4K_AvY01MovUPL6IPvSjz3CwR4BvrnjOh9CzQAy5JM-I2Pq5WQXt8QKCf8H8CrlechZSAV79b0tYEnRbdYIukRse3F3EW8N" heigh=300 width=300/>
+  <li>[x] Thiết kế giao diện</li>
+  <li>[ ] Phát triển chức năng</li>
+  <li>[ ] ...</li>
+</ul>
 <hr/>
 
 <h3>Giới thiệu</h3>
@@ -34,17 +45,6 @@
   <li>Language: PHP</li>
   <li>Framework: Laravel</li>
   <li>Database: MySQL</li>
-</ul>
-<hr/>
-
-<h3>Roadmap</h3>
-<p>Lộ trình phát triển của dự án:</p>
-<ul>
-  <li>[x] Tìm hiểu nghiệp vụ</li>
-  <li>[ ] Thiết kế database</li>
-  <li>[ ] Thiết kế giao diện</li>
-  <li>[ ] Phát triển chức năng</li>
-  <li>[ ] ...</li>
 </ul>
 <hr/>
 
