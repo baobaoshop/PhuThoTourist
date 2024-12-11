@@ -438,8 +438,7 @@
     margin-top: 80px;
 }
 .swiper-slide {
-    width: 0;
-    
+
     perspective: 1000px;
     opacity: 0;
 }
@@ -448,6 +447,11 @@
     opacity: 1; 
     width: 300px;
     z-index: 1;
+}
+.swiper-slide-home-img {
+    width: 250px;
+    height: 400px;
+    object-fit: cover;
 }
 
 .swiper-slide-prev .swiper-slide-home-img {
@@ -698,6 +702,11 @@
     font-style: normal;
     font-weight: 400;
     line-height: 21px;
+    width: 200px;    display: -webkit-box;
+    -webkit-line-clamp: 3;    /* Giới hạn số dòng hiển thị */
+    -webkit-box-orient: vertical; /* Chỉ định chiều hướng của các phần tử trong box */
+    overflow: hidden;         /* Ẩn nội dung vượt quá */
+    text-overflow: ellipsis; 
 }
 .home_blog_main_item_content_label {
     display: flex;
@@ -715,7 +724,7 @@
     background: var(--blue-primary-50, #E6EEF7);
     color: var(--blue-primary-500, #0054A6);
     font-family: Roboto;
-    font-size: 14px;
+    font-size: 12px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
