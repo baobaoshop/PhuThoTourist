@@ -38,7 +38,7 @@
 <div class="blog_intro">
     
     <div class="blog_main">
-      <div class="blog_main_left">
+      <div class="recuit_main_left">
         <div class="blog_main_left_logo">
           <svg xmlns="http://www.w3.org/2000/svg" width="" height="" viewBox="0 0 142 89" fill="none">
             <path d="M115.588 44.5C115.588 69.0767 95.6646 89 71.0879 89C46.5112 89 26.5879 69.0767 26.5879 44.5C26.5879 19.9233 46.5112 0 71.0879 0C95.6646 0 115.588 19.9233 115.588 44.5Z" fill="#0054A6"/>
@@ -52,7 +52,14 @@
                     <path d="M17.2959 17.3333L21.2959 21.3333" stroke="#0054A6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M19.2959 11.3333C19.2959 15.7516 15.7142 19.3333 11.2959 19.3333C6.87762 19.3333 3.2959 15.7516 3.2959 11.3333C3.2959 6.91497 6.87762 3.33325 11.2959 3.33325C15.7142 3.33325 19.2959 6.91497 19.2959 11.3333Z" stroke="#0054A6" stroke-width="2"/>
                 </svg>
-                <input type="text" placeholder="Tìm kiếm">
+                <form method="GET" action="{{ route('recruitment.index') }}">
+                    <input 
+                        type="text" 
+                        name="search" 
+                        placeholder="Tìm kiếm công việc" 
+                        value="{{ request('search') }}"
+                        onkeyup="if(event.keyCode === 13) this.form.submit()">
+                </form>
             </div>
             <div class="recruit_left_part"></div>
             <div class="recruit_left_group">
@@ -64,12 +71,13 @@
                     <p>Lĩnh vực</p>
                 </div>
                 <div class="recruit_left_group_main">
-                    <div class="recruit_left_group_main_item recruit_left_group_main_item--active"><a href="">Hướng dẫn viên</a></div>
-                    <div class="recruit_left_group_main_item"><a href="">Kinh doanh</a></div>
-                    <div class="recruit_left_group_main_item"><a href="">Kĩ sư xây dựng</a></div>
-                    <div class="recruit_left_group_main_item"><a href="">Nhân viên kế toán</a></div>
-                    <div class="recruit_left_group_main_item"><a href="">Nhân viên kĩ thuật</a></div>
-                    <div class="recruit_left_group_main_item"><a href="">Nhân viên phục vụ</a></div>
+                    @foreach ($industries as $industry)
+                        <div class="recruit_left_group_main_item {{ request('industry') == $industry->id ? 'recruit_left_group_main_item--active' : '' }}">
+                            <a href="{{ route('recruitment.index', request()->has('industry') && request('industry') == $industry->id ? [] : ['industry' => $industry->id]) }}">
+                                {{ $industry->name }}
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
             <div class="recruit_left_group">
@@ -80,10 +88,11 @@
                     <p>Hình thức làm việc</p>
                 </div>
                 <div class="recruit_left_group_main">
-                    <div class="recruit_left_group_main_item recruit_left_group_main_item--active"><a href="">Bán thời gian</a></div>
-                    <div class="recruit_left_group_main_item"><a href="">Nhân viên chính thức</a></div>
-                    <div class="recruit_left_group_main_item"><a href="">Theo ca</a></div>
-                    <div class="recruit_left_group_main_item"><a href="">Thực tập</a></div>
+                    @foreach ($workTypes as $workType)
+                        <div class="recruit_left_group_main_item {{ request('work_type') == $workType->id ? 'recruit_left_group_main_item--active' : '' }}">
+                            <a href="{{ route('recruitment.index', request()->has('work_type') && request('work_type') == $workType->id ? [] : ['work_type' => $workType->id]) }}">{{ $workType->name }}</a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
             <div class="recruit_left_group">
@@ -94,14 +103,11 @@
                     <p>Nơi làm việc</p>
                 </div>
                 <div class="recruit_left_group_main">
-                    <div class="recruit_left_group_main_item recruit_left_group_main_item--active"><a href="">Cà Phê Vườn Đá</a></div>
-                    <div class="recruit_left_group_main_item"><a href="">NH Thủy Tạ Đầm Sen</a></div>
-                    <div class="recruit_left_group_main_item"><a href="">CVVH Đầm Sen</a></div>
-                    <div class="recruit_left_group_main_item"><a href="">Khách sạn Ngọc Lan</a></div>
-                    <div class="recruit_left_group_main_item"><a href="">Khách sạn Phú Thọ</a></div>
-                    <div class="recruit_left_group_main_item"><a href="">KDL Sinh Thái Vàm Sát</a></div>
-                    <div class="recruit_left_group_main_item"><a href="">Trung tâm DVDL Đầm Sen</a></div>
-                    <div class="recruit_left_group_main_item"><a href="">VP Phuthotourist</a></div>
+                    @foreach ($locations as $location)
+                        <div class="recruit_left_group_main_item {{ request('location') == $location->id ? 'recruit_left_group_main_item--active' : '' }}">
+                            <a href="{{ route('recruitment.index', request()->has('location') && request('location') == $location->id ? [] : ['location' => $location->id]) }}">{{ $location->name }}</a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -109,60 +115,30 @@
       <div class="blog_main_right">
         <div class="recruit_main">
 
-            <div class="recruit_main_item">
-                <div class="recruit_main_item_top">
-                    <img src="{{ asset('images/img_job.png') }}" alt="">
-                    <div class="recruit_main_item_top_right">
-                        <div class="recruit_main_item_top_right_title">Nhân viên thiết kế đồ họa</div>
-                        <div class="recruit_main_item_top_right_sub">Nhân viên chính thức</div>
-                        <div class="recruit_main_item_top_status">
-                            <div class="recruit_main_item_top_status_left">
-                                <div class="recruit_main_item_top_right_location">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M14.4789 5.45988C13.6902 2.15451 10.6629 0.666382 8.00377 0.666382H7.99625C5.3446 0.666382 2.30986 2.14736 1.52112 5.45272C0.642246 9.14443 3.01596 12.2709 5.16432 14.2384C5.92581 14.9404 6.94401 15.3329 8.00377 15.333C9.02536 15.333 10.047 14.9682 10.8357 14.2384C12.9841 12.2709 15.3578 9.15159 14.4789 5.45988ZM8.00377 9.04427C7.69303 9.04427 7.38534 8.98598 7.09826 8.87272C6.81118 8.75946 6.55033 8.59346 6.33061 8.38419C6.11089 8.17492 5.93659 7.92647 5.81768 7.65305C5.69877 7.37962 5.63756 7.08656 5.63756 6.79061C5.63756 6.49466 5.69877 6.2016 5.81768 5.92817C5.93659 5.65475 6.11089 5.4063 6.33061 5.19703C6.55033 4.98776 6.81118 4.82176 7.09826 4.7085C7.38534 4.59524 7.69303 4.53695 8.00377 4.53695C8.63132 4.53695 9.23317 4.77439 9.67692 5.19703C10.1207 5.61968 10.37 6.1929 10.37 6.79061C10.37 7.38832 10.1207 7.96154 9.67692 8.38419C9.23317 8.80683 8.63132 9.04427 8.00377 9.04427Z" fill="#A3A3A3"/>
-                                    </svg>
-                                    <p>CVVH Đầm Sen</p>
-                                </div>
-                                <div class="recruit_main_item_top_right_time">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M8.00001 1.33337C4.32668 1.33337 1.33334 4.32671 1.33334 8.00004C1.33334 11.6734 4.32668 14.6667 8.00001 14.6667C11.6733 14.6667 14.6667 11.6734 14.6667 8.00004C14.6667 4.32671 11.6733 1.33337 8.00001 1.33337ZM10.9 10.38C10.8666 10.4369 10.8223 10.4865 10.7696 10.526C10.7169 10.5655 10.6568 10.5942 10.5929 10.6103C10.529 10.6264 10.4626 10.6297 10.3974 10.6199C10.3323 10.6102 10.2697 10.5875 10.2133 10.5534L8.14668 9.32004C7.63334 9.01337 7.25334 8.34004 7.25334 7.74671V5.01337C7.25334 4.74004 7.48001 4.51337 7.75334 4.51337C8.02668 4.51337 8.25334 4.74004 8.25334 5.01337V7.74671C8.25334 7.98671 8.45334 8.34004 8.66001 8.46004L10.7267 9.69337C10.9667 9.83337 11.0467 10.14 10.9 10.38Z" fill="#A3A3A3"/>
-                                    </svg>
-                                    <p>2 tuần trước</p>
-                                </div>
-                            </div>
-                            <div class="recruit_main_item_top_status_right status_success">Đang tuyển</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="recruit_main_item_mid">
-                    <div class="recruit_main_item_mid_title">Mô tả công việc:</div>
-                    <div class="recruit_main_item_mid_content">Trung tâm dịch vụ du lịch Đầm Sen cần tuyển 2 Nhân viên kinh doanh lữ hành. Yêu cầu: Tốt nghiệp CĐ, ĐH chuyên ngành Du lich, QT kinh doanh, Marketing. Am hiểu tâm lý ...</div>
-                </div>
-                <a href="detailrecruitment" class="recruit_main_item_button">Xem chi tiết</a>
-            </div>
+            @foreach($jobs as $job)
 
             <div class="recruit_main_item">
                 <div class="recruit_main_item_top">
                     <img src="{{ asset('images/img_job.png') }}" alt="">
                     <div class="recruit_main_item_top_right">
-                        <div class="recruit_main_item_top_right_title">Nhân viên thiết kế đồ họa</div>
-                        <div class="recruit_main_item_top_right_sub">Nhân viên chính thức</div>
+                        <div class="recruit_main_item_top_right_title">{{ $job->title }}</div>
+                        <div class="recruit_main_item_top_right_sub">{{ $job->work_type->name }}</div>
                         <div class="recruit_main_item_top_status">
                             <div class="recruit_main_item_top_status_left">
                                 <div class="recruit_main_item_top_right_location">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                                         <path d="M14.4789 5.45988C13.6902 2.15451 10.6629 0.666382 8.00377 0.666382H7.99625C5.3446 0.666382 2.30986 2.14736 1.52112 5.45272C0.642246 9.14443 3.01596 12.2709 5.16432 14.2384C5.92581 14.9404 6.94401 15.3329 8.00377 15.333C9.02536 15.333 10.047 14.9682 10.8357 14.2384C12.9841 12.2709 15.3578 9.15159 14.4789 5.45988ZM8.00377 9.04427C7.69303 9.04427 7.38534 8.98598 7.09826 8.87272C6.81118 8.75946 6.55033 8.59346 6.33061 8.38419C6.11089 8.17492 5.93659 7.92647 5.81768 7.65305C5.69877 7.37962 5.63756 7.08656 5.63756 6.79061C5.63756 6.49466 5.69877 6.2016 5.81768 5.92817C5.93659 5.65475 6.11089 5.4063 6.33061 5.19703C6.55033 4.98776 6.81118 4.82176 7.09826 4.7085C7.38534 4.59524 7.69303 4.53695 8.00377 4.53695C8.63132 4.53695 9.23317 4.77439 9.67692 5.19703C10.1207 5.61968 10.37 6.1929 10.37 6.79061C10.37 7.38832 10.1207 7.96154 9.67692 8.38419C9.23317 8.80683 8.63132 9.04427 8.00377 9.04427Z" fill="#A3A3A3"/>
                                     </svg>
-                                    <p>CVVH Đầm Sen</p>
+                                    <p>{{ $job->location->name }}</p>
                                 </div>
                                 <div class="recruit_main_item_top_right_time">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                                         <path d="M8.00001 1.33337C4.32668 1.33337 1.33334 4.32671 1.33334 8.00004C1.33334 11.6734 4.32668 14.6667 8.00001 14.6667C11.6733 14.6667 14.6667 11.6734 14.6667 8.00004C14.6667 4.32671 11.6733 1.33337 8.00001 1.33337ZM10.9 10.38C10.8666 10.4369 10.8223 10.4865 10.7696 10.526C10.7169 10.5655 10.6568 10.5942 10.5929 10.6103C10.529 10.6264 10.4626 10.6297 10.3974 10.6199C10.3323 10.6102 10.2697 10.5875 10.2133 10.5534L8.14668 9.32004C7.63334 9.01337 7.25334 8.34004 7.25334 7.74671V5.01337C7.25334 4.74004 7.48001 4.51337 7.75334 4.51337C8.02668 4.51337 8.25334 4.74004 8.25334 5.01337V7.74671C8.25334 7.98671 8.45334 8.34004 8.66001 8.46004L10.7267 9.69337C10.9667 9.83337 11.0467 10.14 10.9 10.38Z" fill="#A3A3A3"/>
                                     </svg>
-                                    <p>2 tuần trước</p>
+                                    <p>{{ \Carbon\Carbon::parse($job->date)->diffForHumans() }}</p>
                                 </div>
                             </div>
-                            <div class="recruit_main_item_top_status_right status_danger">Đã hết hạn</div>
+                            <div style="display: flex; align-items:center"><div class="recruit_main_item_top_status_right @if (\Carbon\Carbon::parse($job->date_expired)->isPast()) status_danger @else status_success @endif">@if (\Carbon\Carbon::parse($job->date_expired)->isPast()) Đã hết hạn @else Đang tuyển @endif </div></div>
                         </div>
                     </div>
                 </div>
@@ -170,267 +146,25 @@
                     <div class="recruit_main_item_mid_title">Mô tả công việc:</div>
                     <div class="recruit_main_item_mid_content">Trung tâm dịch vụ du lịch Đầm Sen cần tuyển 2 Nhân viên kinh doanh lữ hành. Yêu cầu: Tốt nghiệp CĐ, ĐH chuyên ngành Du lich, QT kinh doanh, Marketing. Am hiểu tâm lý ...</div>
                 </div>
-                <a href="detailrecruitment" class="recruit_main_item_button">Xem chi tiết</a>
+                <a href="{{ route('job.show', ['id' => $job->id]) }}" class="recruit_main_item_button ">Xem chi tiết</a>
             </div>
 
-            <div class="recruit_main_item">
-                <div class="recruit_main_item_top">
-                    <img src="{{ asset('images/img_job.png') }}" alt="">
-                    <div class="recruit_main_item_top_right">
-                        <div class="recruit_main_item_top_right_title">Nhân viên thiết kế đồ họa</div>
-                        <div class="recruit_main_item_top_right_sub">Nhân viên chính thức</div>
-                        <div class="recruit_main_item_top_status">
-                            <div class="recruit_main_item_top_status_left">
-                                <div class="recruit_main_item_top_right_location">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M14.4789 5.45988C13.6902 2.15451 10.6629 0.666382 8.00377 0.666382H7.99625C5.3446 0.666382 2.30986 2.14736 1.52112 5.45272C0.642246 9.14443 3.01596 12.2709 5.16432 14.2384C5.92581 14.9404 6.94401 15.3329 8.00377 15.333C9.02536 15.333 10.047 14.9682 10.8357 14.2384C12.9841 12.2709 15.3578 9.15159 14.4789 5.45988ZM8.00377 9.04427C7.69303 9.04427 7.38534 8.98598 7.09826 8.87272C6.81118 8.75946 6.55033 8.59346 6.33061 8.38419C6.11089 8.17492 5.93659 7.92647 5.81768 7.65305C5.69877 7.37962 5.63756 7.08656 5.63756 6.79061C5.63756 6.49466 5.69877 6.2016 5.81768 5.92817C5.93659 5.65475 6.11089 5.4063 6.33061 5.19703C6.55033 4.98776 6.81118 4.82176 7.09826 4.7085C7.38534 4.59524 7.69303 4.53695 8.00377 4.53695C8.63132 4.53695 9.23317 4.77439 9.67692 5.19703C10.1207 5.61968 10.37 6.1929 10.37 6.79061C10.37 7.38832 10.1207 7.96154 9.67692 8.38419C9.23317 8.80683 8.63132 9.04427 8.00377 9.04427Z" fill="#A3A3A3"/>
-                                    </svg>
-                                    <p>CVVH Đầm Sen</p>
-                                </div>
-                                <div class="recruit_main_item_top_right_time">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M8.00001 1.33337C4.32668 1.33337 1.33334 4.32671 1.33334 8.00004C1.33334 11.6734 4.32668 14.6667 8.00001 14.6667C11.6733 14.6667 14.6667 11.6734 14.6667 8.00004C14.6667 4.32671 11.6733 1.33337 8.00001 1.33337ZM10.9 10.38C10.8666 10.4369 10.8223 10.4865 10.7696 10.526C10.7169 10.5655 10.6568 10.5942 10.5929 10.6103C10.529 10.6264 10.4626 10.6297 10.3974 10.6199C10.3323 10.6102 10.2697 10.5875 10.2133 10.5534L8.14668 9.32004C7.63334 9.01337 7.25334 8.34004 7.25334 7.74671V5.01337C7.25334 4.74004 7.48001 4.51337 7.75334 4.51337C8.02668 4.51337 8.25334 4.74004 8.25334 5.01337V7.74671C8.25334 7.98671 8.45334 8.34004 8.66001 8.46004L10.7267 9.69337C10.9667 9.83337 11.0467 10.14 10.9 10.38Z" fill="#A3A3A3"/>
-                                    </svg>
-                                    <p>2 tuần trước</p>
-                                </div>
-                            </div>
-                            <div class="recruit_main_item_top_status_right status_success">Đang tuyển</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="recruit_main_item_mid">
-                    <div class="recruit_main_item_mid_title">Mô tả công việc:</div>
-                    <div class="recruit_main_item_mid_content">Trung tâm dịch vụ du lịch Đầm Sen cần tuyển 2 Nhân viên kinh doanh lữ hành. Yêu cầu: Tốt nghiệp CĐ, ĐH chuyên ngành Du lich, QT kinh doanh, Marketing. Am hiểu tâm lý ...</div>
-                </div>
-                <a href="detailrecruitment" class="recruit_main_item_button">Xem chi tiết</a>
-            </div>
-
-            <div class="recruit_main_item">
-                <div class="recruit_main_item_top">
-                    <img src="{{ asset('images/img_job.png') }}" alt="">
-                    <div class="recruit_main_item_top_right">
-                        <div class="recruit_main_item_top_right_title">Nhân viên thiết kế đồ họa</div>
-                        <div class="recruit_main_item_top_right_sub">Nhân viên chính thức</div>
-                        <div class="recruit_main_item_top_status">
-                            <div class="recruit_main_item_top_status_left">
-                                <div class="recruit_main_item_top_right_location">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M14.4789 5.45988C13.6902 2.15451 10.6629 0.666382 8.00377 0.666382H7.99625C5.3446 0.666382 2.30986 2.14736 1.52112 5.45272C0.642246 9.14443 3.01596 12.2709 5.16432 14.2384C5.92581 14.9404 6.94401 15.3329 8.00377 15.333C9.02536 15.333 10.047 14.9682 10.8357 14.2384C12.9841 12.2709 15.3578 9.15159 14.4789 5.45988ZM8.00377 9.04427C7.69303 9.04427 7.38534 8.98598 7.09826 8.87272C6.81118 8.75946 6.55033 8.59346 6.33061 8.38419C6.11089 8.17492 5.93659 7.92647 5.81768 7.65305C5.69877 7.37962 5.63756 7.08656 5.63756 6.79061C5.63756 6.49466 5.69877 6.2016 5.81768 5.92817C5.93659 5.65475 6.11089 5.4063 6.33061 5.19703C6.55033 4.98776 6.81118 4.82176 7.09826 4.7085C7.38534 4.59524 7.69303 4.53695 8.00377 4.53695C8.63132 4.53695 9.23317 4.77439 9.67692 5.19703C10.1207 5.61968 10.37 6.1929 10.37 6.79061C10.37 7.38832 10.1207 7.96154 9.67692 8.38419C9.23317 8.80683 8.63132 9.04427 8.00377 9.04427Z" fill="#A3A3A3"/>
-                                    </svg>
-                                    <p>CVVH Đầm Sen</p>
-                                </div>
-                                <div class="recruit_main_item_top_right_time">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M8.00001 1.33337C4.32668 1.33337 1.33334 4.32671 1.33334 8.00004C1.33334 11.6734 4.32668 14.6667 8.00001 14.6667C11.6733 14.6667 14.6667 11.6734 14.6667 8.00004C14.6667 4.32671 11.6733 1.33337 8.00001 1.33337ZM10.9 10.38C10.8666 10.4369 10.8223 10.4865 10.7696 10.526C10.7169 10.5655 10.6568 10.5942 10.5929 10.6103C10.529 10.6264 10.4626 10.6297 10.3974 10.6199C10.3323 10.6102 10.2697 10.5875 10.2133 10.5534L8.14668 9.32004C7.63334 9.01337 7.25334 8.34004 7.25334 7.74671V5.01337C7.25334 4.74004 7.48001 4.51337 7.75334 4.51337C8.02668 4.51337 8.25334 4.74004 8.25334 5.01337V7.74671C8.25334 7.98671 8.45334 8.34004 8.66001 8.46004L10.7267 9.69337C10.9667 9.83337 11.0467 10.14 10.9 10.38Z" fill="#A3A3A3"/>
-                                    </svg>
-                                    <p>2 tuần trước</p>
-                                </div>
-                            </div>
-                            <div class="recruit_main_item_top_status_right status_danger">Đã hết hạn</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="recruit_main_item_mid">
-                    <div class="recruit_main_item_mid_title">Mô tả công việc:</div>
-                    <div class="recruit_main_item_mid_content">Trung tâm dịch vụ du lịch Đầm Sen cần tuyển 2 Nhân viên kinh doanh lữ hành. Yêu cầu: Tốt nghiệp CĐ, ĐH chuyên ngành Du lich, QT kinh doanh, Marketing. Am hiểu tâm lý ...</div>
-                </div>
-                <a href="detailrecruitment" class="recruit_main_item_button">Xem chi tiết</a>
-            </div>
-
-            <div class="recruit_main_item">
-                <div class="recruit_main_item_top">
-                    <img src="{{ asset('images/img_job.png') }}" alt="">
-                    <div class="recruit_main_item_top_right">
-                        <div class="recruit_main_item_top_right_title">Nhân viên thiết kế đồ họa</div>
-                        <div class="recruit_main_item_top_right_sub">Nhân viên chính thức</div>
-                        <div class="recruit_main_item_top_status">
-                            <div class="recruit_main_item_top_status_left">
-                                <div class="recruit_main_item_top_right_location">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M14.4789 5.45988C13.6902 2.15451 10.6629 0.666382 8.00377 0.666382H7.99625C5.3446 0.666382 2.30986 2.14736 1.52112 5.45272C0.642246 9.14443 3.01596 12.2709 5.16432 14.2384C5.92581 14.9404 6.94401 15.3329 8.00377 15.333C9.02536 15.333 10.047 14.9682 10.8357 14.2384C12.9841 12.2709 15.3578 9.15159 14.4789 5.45988ZM8.00377 9.04427C7.69303 9.04427 7.38534 8.98598 7.09826 8.87272C6.81118 8.75946 6.55033 8.59346 6.33061 8.38419C6.11089 8.17492 5.93659 7.92647 5.81768 7.65305C5.69877 7.37962 5.63756 7.08656 5.63756 6.79061C5.63756 6.49466 5.69877 6.2016 5.81768 5.92817C5.93659 5.65475 6.11089 5.4063 6.33061 5.19703C6.55033 4.98776 6.81118 4.82176 7.09826 4.7085C7.38534 4.59524 7.69303 4.53695 8.00377 4.53695C8.63132 4.53695 9.23317 4.77439 9.67692 5.19703C10.1207 5.61968 10.37 6.1929 10.37 6.79061C10.37 7.38832 10.1207 7.96154 9.67692 8.38419C9.23317 8.80683 8.63132 9.04427 8.00377 9.04427Z" fill="#A3A3A3"/>
-                                    </svg>
-                                    <p>CVVH Đầm Sen</p>
-                                </div>
-                                <div class="recruit_main_item_top_right_time">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M8.00001 1.33337C4.32668 1.33337 1.33334 4.32671 1.33334 8.00004C1.33334 11.6734 4.32668 14.6667 8.00001 14.6667C11.6733 14.6667 14.6667 11.6734 14.6667 8.00004C14.6667 4.32671 11.6733 1.33337 8.00001 1.33337ZM10.9 10.38C10.8666 10.4369 10.8223 10.4865 10.7696 10.526C10.7169 10.5655 10.6568 10.5942 10.5929 10.6103C10.529 10.6264 10.4626 10.6297 10.3974 10.6199C10.3323 10.6102 10.2697 10.5875 10.2133 10.5534L8.14668 9.32004C7.63334 9.01337 7.25334 8.34004 7.25334 7.74671V5.01337C7.25334 4.74004 7.48001 4.51337 7.75334 4.51337C8.02668 4.51337 8.25334 4.74004 8.25334 5.01337V7.74671C8.25334 7.98671 8.45334 8.34004 8.66001 8.46004L10.7267 9.69337C10.9667 9.83337 11.0467 10.14 10.9 10.38Z" fill="#A3A3A3"/>
-                                    </svg>
-                                    <p>2 tuần trước</p>
-                                </div>
-                            </div>
-                            <div class="recruit_main_item_top_status_right status_success">Đang tuyển</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="recruit_main_item_mid">
-                    <div class="recruit_main_item_mid_title">Mô tả công việc:</div>
-                    <div class="recruit_main_item_mid_content">Trung tâm dịch vụ du lịch Đầm Sen cần tuyển 2 Nhân viên kinh doanh lữ hành. Yêu cầu: Tốt nghiệp CĐ, ĐH chuyên ngành Du lich, QT kinh doanh, Marketing. Am hiểu tâm lý ...</div>
-                </div>
-                <a href="detailrecruitment" class="recruit_main_item_button">Xem chi tiết</a>
-            </div>
-
-            <div class="recruit_main_item">
-                <div class="recruit_main_item_top">
-                    <img src="{{ asset('images/img_job.png') }}" alt="">
-                    <div class="recruit_main_item_top_right">
-                        <div class="recruit_main_item_top_right_title">Nhân viên thiết kế đồ họa</div>
-                        <div class="recruit_main_item_top_right_sub">Nhân viên chính thức</div>
-                        <div class="recruit_main_item_top_status">
-                            <div class="recruit_main_item_top_status_left">
-                                <div class="recruit_main_item_top_right_location">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M14.4789 5.45988C13.6902 2.15451 10.6629 0.666382 8.00377 0.666382H7.99625C5.3446 0.666382 2.30986 2.14736 1.52112 5.45272C0.642246 9.14443 3.01596 12.2709 5.16432 14.2384C5.92581 14.9404 6.94401 15.3329 8.00377 15.333C9.02536 15.333 10.047 14.9682 10.8357 14.2384C12.9841 12.2709 15.3578 9.15159 14.4789 5.45988ZM8.00377 9.04427C7.69303 9.04427 7.38534 8.98598 7.09826 8.87272C6.81118 8.75946 6.55033 8.59346 6.33061 8.38419C6.11089 8.17492 5.93659 7.92647 5.81768 7.65305C5.69877 7.37962 5.63756 7.08656 5.63756 6.79061C5.63756 6.49466 5.69877 6.2016 5.81768 5.92817C5.93659 5.65475 6.11089 5.4063 6.33061 5.19703C6.55033 4.98776 6.81118 4.82176 7.09826 4.7085C7.38534 4.59524 7.69303 4.53695 8.00377 4.53695C8.63132 4.53695 9.23317 4.77439 9.67692 5.19703C10.1207 5.61968 10.37 6.1929 10.37 6.79061C10.37 7.38832 10.1207 7.96154 9.67692 8.38419C9.23317 8.80683 8.63132 9.04427 8.00377 9.04427Z" fill="#A3A3A3"/>
-                                    </svg>
-                                    <p>CVVH Đầm Sen</p>
-                                </div>
-                                <div class="recruit_main_item_top_right_time">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M8.00001 1.33337C4.32668 1.33337 1.33334 4.32671 1.33334 8.00004C1.33334 11.6734 4.32668 14.6667 8.00001 14.6667C11.6733 14.6667 14.6667 11.6734 14.6667 8.00004C14.6667 4.32671 11.6733 1.33337 8.00001 1.33337ZM10.9 10.38C10.8666 10.4369 10.8223 10.4865 10.7696 10.526C10.7169 10.5655 10.6568 10.5942 10.5929 10.6103C10.529 10.6264 10.4626 10.6297 10.3974 10.6199C10.3323 10.6102 10.2697 10.5875 10.2133 10.5534L8.14668 9.32004C7.63334 9.01337 7.25334 8.34004 7.25334 7.74671V5.01337C7.25334 4.74004 7.48001 4.51337 7.75334 4.51337C8.02668 4.51337 8.25334 4.74004 8.25334 5.01337V7.74671C8.25334 7.98671 8.45334 8.34004 8.66001 8.46004L10.7267 9.69337C10.9667 9.83337 11.0467 10.14 10.9 10.38Z" fill="#A3A3A3"/>
-                                    </svg>
-                                    <p>2 tuần trước</p>
-                                </div>
-                            </div>
-                            <div class="recruit_main_item_top_status_right status_success">Đang tuyển</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="recruit_main_item_mid">
-                    <div class="recruit_main_item_mid_title">Mô tả công việc:</div>
-                    <div class="recruit_main_item_mid_content">Trung tâm dịch vụ du lịch Đầm Sen cần tuyển 2 Nhân viên kinh doanh lữ hành. Yêu cầu: Tốt nghiệp CĐ, ĐH chuyên ngành Du lich, QT kinh doanh, Marketing. Am hiểu tâm lý ...</div>
-                </div>
-                <a href="detailrecruitment" class="recruit_main_item_button">Xem chi tiết</a>
-            </div>
-
-            <div class="recruit_main_item">
-                <div class="recruit_main_item_top">
-                    <img src="{{ asset('images/img_job.png') }}" alt="">
-                    <div class="recruit_main_item_top_right">
-                        <div class="recruit_main_item_top_right_title">Nhân viên thiết kế đồ họa</div>
-                        <div class="recruit_main_item_top_right_sub">Nhân viên chính thức</div>
-                        <div class="recruit_main_item_top_status">
-                            <div class="recruit_main_item_top_status_left">
-                                <div class="recruit_main_item_top_right_location">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M14.4789 5.45988C13.6902 2.15451 10.6629 0.666382 8.00377 0.666382H7.99625C5.3446 0.666382 2.30986 2.14736 1.52112 5.45272C0.642246 9.14443 3.01596 12.2709 5.16432 14.2384C5.92581 14.9404 6.94401 15.3329 8.00377 15.333C9.02536 15.333 10.047 14.9682 10.8357 14.2384C12.9841 12.2709 15.3578 9.15159 14.4789 5.45988ZM8.00377 9.04427C7.69303 9.04427 7.38534 8.98598 7.09826 8.87272C6.81118 8.75946 6.55033 8.59346 6.33061 8.38419C6.11089 8.17492 5.93659 7.92647 5.81768 7.65305C5.69877 7.37962 5.63756 7.08656 5.63756 6.79061C5.63756 6.49466 5.69877 6.2016 5.81768 5.92817C5.93659 5.65475 6.11089 5.4063 6.33061 5.19703C6.55033 4.98776 6.81118 4.82176 7.09826 4.7085C7.38534 4.59524 7.69303 4.53695 8.00377 4.53695C8.63132 4.53695 9.23317 4.77439 9.67692 5.19703C10.1207 5.61968 10.37 6.1929 10.37 6.79061C10.37 7.38832 10.1207 7.96154 9.67692 8.38419C9.23317 8.80683 8.63132 9.04427 8.00377 9.04427Z" fill="#A3A3A3"/>
-                                    </svg>
-                                    <p>CVVH Đầm Sen</p>
-                                </div>
-                                <div class="recruit_main_item_top_right_time">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M8.00001 1.33337C4.32668 1.33337 1.33334 4.32671 1.33334 8.00004C1.33334 11.6734 4.32668 14.6667 8.00001 14.6667C11.6733 14.6667 14.6667 11.6734 14.6667 8.00004C14.6667 4.32671 11.6733 1.33337 8.00001 1.33337ZM10.9 10.38C10.8666 10.4369 10.8223 10.4865 10.7696 10.526C10.7169 10.5655 10.6568 10.5942 10.5929 10.6103C10.529 10.6264 10.4626 10.6297 10.3974 10.6199C10.3323 10.6102 10.2697 10.5875 10.2133 10.5534L8.14668 9.32004C7.63334 9.01337 7.25334 8.34004 7.25334 7.74671V5.01337C7.25334 4.74004 7.48001 4.51337 7.75334 4.51337C8.02668 4.51337 8.25334 4.74004 8.25334 5.01337V7.74671C8.25334 7.98671 8.45334 8.34004 8.66001 8.46004L10.7267 9.69337C10.9667 9.83337 11.0467 10.14 10.9 10.38Z" fill="#A3A3A3"/>
-                                    </svg>
-                                    <p>2 tuần trước</p>
-                                </div>
-                            </div>
-                            <div class="recruit_main_item_top_status_right status_danger">Đã hết hạn</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="recruit_main_item_mid">
-                    <div class="recruit_main_item_mid_title">Mô tả công việc:</div>
-                    <div class="recruit_main_item_mid_content">Trung tâm dịch vụ du lịch Đầm Sen cần tuyển 2 Nhân viên kinh doanh lữ hành. Yêu cầu: Tốt nghiệp CĐ, ĐH chuyên ngành Du lich, QT kinh doanh, Marketing. Am hiểu tâm lý ...</div>
-                </div>
-                <a href="detailrecruitment" class="recruit_main_item_button">Xem chi tiết</a>
-            </div>
-
-            <div class="recruit_main_item">
-                <div class="recruit_main_item_top">
-                    <img src="{{ asset('images/img_job.png') }}" alt="">
-                    <div class="recruit_main_item_top_right">
-                        <div class="recruit_main_item_top_right_title">Nhân viên thiết kế đồ họa</div>
-                        <div class="recruit_main_item_top_right_sub">Nhân viên chính thức</div>
-                        <div class="recruit_main_item_top_status">
-                            <div class="recruit_main_item_top_status_left">
-                                <div class="recruit_main_item_top_right_location">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M14.4789 5.45988C13.6902 2.15451 10.6629 0.666382 8.00377 0.666382H7.99625C5.3446 0.666382 2.30986 2.14736 1.52112 5.45272C0.642246 9.14443 3.01596 12.2709 5.16432 14.2384C5.92581 14.9404 6.94401 15.3329 8.00377 15.333C9.02536 15.333 10.047 14.9682 10.8357 14.2384C12.9841 12.2709 15.3578 9.15159 14.4789 5.45988ZM8.00377 9.04427C7.69303 9.04427 7.38534 8.98598 7.09826 8.87272C6.81118 8.75946 6.55033 8.59346 6.33061 8.38419C6.11089 8.17492 5.93659 7.92647 5.81768 7.65305C5.69877 7.37962 5.63756 7.08656 5.63756 6.79061C5.63756 6.49466 5.69877 6.2016 5.81768 5.92817C5.93659 5.65475 6.11089 5.4063 6.33061 5.19703C6.55033 4.98776 6.81118 4.82176 7.09826 4.7085C7.38534 4.59524 7.69303 4.53695 8.00377 4.53695C8.63132 4.53695 9.23317 4.77439 9.67692 5.19703C10.1207 5.61968 10.37 6.1929 10.37 6.79061C10.37 7.38832 10.1207 7.96154 9.67692 8.38419C9.23317 8.80683 8.63132 9.04427 8.00377 9.04427Z" fill="#A3A3A3"/>
-                                    </svg>
-                                    <p>CVVH Đầm Sen</p>
-                                </div>
-                                <div class="recruit_main_item_top_right_time">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M8.00001 1.33337C4.32668 1.33337 1.33334 4.32671 1.33334 8.00004C1.33334 11.6734 4.32668 14.6667 8.00001 14.6667C11.6733 14.6667 14.6667 11.6734 14.6667 8.00004C14.6667 4.32671 11.6733 1.33337 8.00001 1.33337ZM10.9 10.38C10.8666 10.4369 10.8223 10.4865 10.7696 10.526C10.7169 10.5655 10.6568 10.5942 10.5929 10.6103C10.529 10.6264 10.4626 10.6297 10.3974 10.6199C10.3323 10.6102 10.2697 10.5875 10.2133 10.5534L8.14668 9.32004C7.63334 9.01337 7.25334 8.34004 7.25334 7.74671V5.01337C7.25334 4.74004 7.48001 4.51337 7.75334 4.51337C8.02668 4.51337 8.25334 4.74004 8.25334 5.01337V7.74671C8.25334 7.98671 8.45334 8.34004 8.66001 8.46004L10.7267 9.69337C10.9667 9.83337 11.0467 10.14 10.9 10.38Z" fill="#A3A3A3"/>
-                                    </svg>
-                                    <p>2 tuần trước</p>
-                                </div>
-                            </div>
-                            <div class="recruit_main_item_top_status_right status_danger">Đã hết hạn</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="recruit_main_item_mid">
-                    <div class="recruit_main_item_mid_title">Mô tả công việc:</div>
-                    <div class="recruit_main_item_mid_content">Trung tâm dịch vụ du lịch Đầm Sen cần tuyển 2 Nhân viên kinh doanh lữ hành. Yêu cầu: Tốt nghiệp CĐ, ĐH chuyên ngành Du lich, QT kinh doanh, Marketing. Am hiểu tâm lý ...</div>
-                </div>
-                <a href="detailrecruitment" class="recruit_main_item_button">Xem chi tiết</a>
-            </div>
-
-            <div class="recruit_main_item">
-                <div class="recruit_main_item_top">
-                    <img src="{{ asset('images/img_job.png') }}" alt="">
-                    <div class="recruit_main_item_top_right">
-                        <div class="recruit_main_item_top_right_title">Nhân viên thiết kế đồ họa</div>
-                        <div class="recruit_main_item_top_right_sub">Nhân viên chính thức</div>
-                        <div class="recruit_main_item_top_status">
-                            <div class="recruit_main_item_top_status_left">
-                                <div class="recruit_main_item_top_right_location">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M14.4789 5.45988C13.6902 2.15451 10.6629 0.666382 8.00377 0.666382H7.99625C5.3446 0.666382 2.30986 2.14736 1.52112 5.45272C0.642246 9.14443 3.01596 12.2709 5.16432 14.2384C5.92581 14.9404 6.94401 15.3329 8.00377 15.333C9.02536 15.333 10.047 14.9682 10.8357 14.2384C12.9841 12.2709 15.3578 9.15159 14.4789 5.45988ZM8.00377 9.04427C7.69303 9.04427 7.38534 8.98598 7.09826 8.87272C6.81118 8.75946 6.55033 8.59346 6.33061 8.38419C6.11089 8.17492 5.93659 7.92647 5.81768 7.65305C5.69877 7.37962 5.63756 7.08656 5.63756 6.79061C5.63756 6.49466 5.69877 6.2016 5.81768 5.92817C5.93659 5.65475 6.11089 5.4063 6.33061 5.19703C6.55033 4.98776 6.81118 4.82176 7.09826 4.7085C7.38534 4.59524 7.69303 4.53695 8.00377 4.53695C8.63132 4.53695 9.23317 4.77439 9.67692 5.19703C10.1207 5.61968 10.37 6.1929 10.37 6.79061C10.37 7.38832 10.1207 7.96154 9.67692 8.38419C9.23317 8.80683 8.63132 9.04427 8.00377 9.04427Z" fill="#A3A3A3"/>
-                                    </svg>
-                                    <p>CVVH Đầm Sen</p>
-                                </div>
-                                <div class="recruit_main_item_top_right_time">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M8.00001 1.33337C4.32668 1.33337 1.33334 4.32671 1.33334 8.00004C1.33334 11.6734 4.32668 14.6667 8.00001 14.6667C11.6733 14.6667 14.6667 11.6734 14.6667 8.00004C14.6667 4.32671 11.6733 1.33337 8.00001 1.33337ZM10.9 10.38C10.8666 10.4369 10.8223 10.4865 10.7696 10.526C10.7169 10.5655 10.6568 10.5942 10.5929 10.6103C10.529 10.6264 10.4626 10.6297 10.3974 10.6199C10.3323 10.6102 10.2697 10.5875 10.2133 10.5534L8.14668 9.32004C7.63334 9.01337 7.25334 8.34004 7.25334 7.74671V5.01337C7.25334 4.74004 7.48001 4.51337 7.75334 4.51337C8.02668 4.51337 8.25334 4.74004 8.25334 5.01337V7.74671C8.25334 7.98671 8.45334 8.34004 8.66001 8.46004L10.7267 9.69337C10.9667 9.83337 11.0467 10.14 10.9 10.38Z" fill="#A3A3A3"/>
-                                    </svg>
-                                    <p>2 tuần trước</p>
-                                </div>
-                            </div>
-                            <div class="recruit_main_item_top_status_right status_success">Đang tuyển</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="recruit_main_item_mid">
-                    <div class="recruit_main_item_mid_title">Mô tả công việc:</div>
-                    <div class="recruit_main_item_mid_content">Trung tâm dịch vụ du lịch Đầm Sen cần tuyển 2 Nhân viên kinh doanh lữ hành. Yêu cầu: Tốt nghiệp CĐ, ĐH chuyên ngành Du lich, QT kinh doanh, Marketing. Am hiểu tâm lý ...</div>
-                </div>
-                <a href="detailrecruitment" class="recruit_main_item_button">Xem chi tiết</a>
-            </div>
+            @endforeach
 
             
+            
         </div>
-        <div class="blog_main_panigation">
-          <div class="blog_main_panigation_item">
-            <a href="">
-              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                <path d="M13.5 15L7.5 10L13.5 5" fill="#A3A3A3"/>
-                <path d="M13.5 15L7.5 10L13.5 5L13.5 15Z" stroke="#A3A3A3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-          <div class="blog_main_panigation_main">
-            <div class="blog_main_panigation_item blog_main_panigation_item--active">
-              <a href="">1</a>
-            </div>
-            <div class="blog_main_panigation_item">
-              <a href="">2</a>
-            </div>
-            <div class="">...</div>
-            <div class="blog_main_panigation_item">
-              <a href="">10</a>
-            </div>
-          </div>
-          <div class="blog_main_panigation_item">
-            <a href="">
-              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                <path d="M7.5 15L13.5 10L7.5 5" fill="#4D4D4D"/>
-                <path d="M7.5 15L13.5 10L7.5 5L7.5 15Z" stroke="#4D4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-
-        </div>
+        {{ $jobs->links() }}
       </div>
     </div>
 </div>
+<script>
+    document.querySelectorAll('.recruit_left_group_main_item a').forEach(item => {
+    item.addEventListener('click', function(e) {
+        e.preventDefault(); 
+        window.location.href = this.href; 
+    });
+});
+
+</script>
 @endsection

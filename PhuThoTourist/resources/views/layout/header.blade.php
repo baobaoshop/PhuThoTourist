@@ -4,7 +4,7 @@
             <a href="/">Trang chủ</a>
         </div>
         <div class="navbar_text">
-            <a href="blog">Bài viết</a>
+            <a href="/blog">Bài viết</a>
         </div>
         <div class="navbar_logo">
             <a href="/">
@@ -16,10 +16,10 @@
             </a>
         </div>
         <div class="navbar_text">
-            <a href="document">Tài liệu</a>
+            <a href="/documents">Tài liệu</a>
         </div>
         <div class="navbar_text">
-            <a href="recruitment">Tuyển dụng</a>
+            <a href="/recruitment">Tuyển dụng</a>
         </div>
     </div>
 </div>

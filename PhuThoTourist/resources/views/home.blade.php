@@ -52,34 +52,34 @@
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
-                <img src="{{ asset('images/image_blog1.jpeg') }}" alt="">
+                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
               </div>
               <div class="swiper-slide">
-                <img src="{{ asset('images/image_blog1.jpeg') }}" alt="">
+                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
               </div>
               <div class="swiper-slide">
-                <img src="{{ asset('images/image_blog1.jpeg') }}" alt="">
+                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
               </div>
               <div class="swiper-slide">
-                <img src="{{ asset('images/image_blog1.jpeg') }}" alt="">
+                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
               </div>
               <div class="swiper-slide">
-                <img src="{{ asset('images/image_blog1.jpeg') }}" alt="">
+                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
               </div>
               <div class="swiper-slide">
-                <img src="{{ asset('images/image_blog1.jpeg') }}" alt="">
+                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
               </div>
               <div class="swiper-slide">
-                <img src="{{ asset('images/image_blog1.jpeg') }}" alt="">
+                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
               </div>
               <div class="swiper-slide">
-                <img src="{{ asset('images/image_blog1.jpeg') }}" alt="">
+                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
               </div>
               <div class="swiper-slide">
-                <img src="{{ asset('images/image_blog1.jpeg') }}" alt="">
+                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
               </div>
               <div class="swiper-slide">
-                <img src="{{ asset('images/image_blog1.jpeg') }}" alt="">
+                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
               </div>
             </div>
             <div class="swiper-pagination"></div>
