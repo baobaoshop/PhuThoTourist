@@ -11,8 +11,9 @@
   <li>[x] Thiết kế database</li>
   <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjw4BCzz4rfPdUkrHTiU747Q_wjn361_tIXcllLYdcSjK4Hj-ZsW6SQ9JSBJtzS1bzz7OYjIrBh0ozfyUrmfC7yPBP7k4K_AvY01MovUPL6IPvSjz3CwR4BvrnjOh9CzQAy5JM-I2Pq5WQXt8QKCf8H8CrlechZSAV79b0tYEnRbdYIukRse3F3EW8N" heigh=300 width=300/>
   <li>[x] Thiết kế giao diện</li>
-  <li>[ ] Phát triển chức năng</li>
-  <li>[ ] ...</li>
+  <li>[x] Chức năng Tài liệu</li>
+  <li>[x] Chức năng Tuyển dụng</li>
+  <li>[ ] Chức năng Bài viết</li>
 </ul>
 <hr/>
 
