@@ -5,23 +5,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\HomeController;
 use App\Models\Articles;
 
 // routes/web.php
 
-Route::get('/', function () {
-    return view('/home');
-});
 
-Route::get('/detailblog', function () {
-    return view('/detailblog');
-});
 
-Route::get('/recruitment', function () {
-    return view('/recruitment');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::get('/blog', [ArticleController::class, 'index'])->name('articles.index');
+
+Route::get('/blog/{id}', [ArticleController::class, 'show'])->name('blog.detail');
 
 Route::get('/documents', [DocumentController::class, 'getAllDocument'])->name('document.index');
 

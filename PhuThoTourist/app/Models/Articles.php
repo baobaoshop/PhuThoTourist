@@ -22,6 +22,6 @@ class Articles extends Model
 
     public function documents()
     {
-        return $this->belongsToMany(Document::class, 'article_documents', 'article_id', 'document_id');
+        return $this->belongsToMany(Document::class, 'ARTICLE_DOCUMENTS', 'article_id', 'document_id');
     }
 }

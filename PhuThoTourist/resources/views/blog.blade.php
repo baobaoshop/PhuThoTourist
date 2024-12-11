@@ -41,41 +41,20 @@
         <div class="blog_left_content">
           <div class="swiper mySwiper2">
             <div class="swiper-wrapper">
-                <div class="swiper-slide swiper-slide2">
-                    <div class="blog_swiper_img">
-                      <img src="{{ asset('images/image_blog2.png') }}" alt="">
-                    </div>
-                    <div class="blog_swiper_content">
-                      <div class="blog_swiper_content_main">
-                        <div class="blog_swiper_content_title">Thông báo mời chào giá cạnh tranh cung cấp nước đá chế tác Băng Đăng</div>
-                        <div class="blog_swiper_subtitle">THÔNG BÁO MỜI CHÀO GIÁ CẠNH TRANH CÔNG TY CỔ PHẦN DỊCH VỤ DU LỊCH PHÚ THỌ tổ chức chào giá cạnh tranh lựa chọn đơn vị Cung cấp nước đá để chế tác Băng Đăng tại Công viên Văn hóa Đầm Sen.</div>
-                      </div>
-                    </div>
-                </div>
 
-                <div class="swiper-slide swiper-slide2">
+              @foreach ($latestArticlesTop3 as $article)
+                <a href="{{ route('blog.detail', ['id' => $article->id]) }}" class="swiper-slide swiper-slide2">
                   <div class="blog_swiper_img">
-                    <img src="{{ asset('images/image_blog2.png') }}" alt="">
+                    <img src="{{ asset('images/'.$article->image) }}" alt="">
                   </div>
                   <div class="blog_swiper_content">
                     <div class="blog_swiper_content_main">
-                      <div class="blog_swiper_content_title">Thông báo mời chào giá cạnh tranh cung cấp nước đá chế tác Băng Đăng</div>
-                      <div class="blog_swiper_subtitle">THÔNG BÁO MỜI CHÀO GIÁ CẠNH TRANH CÔNG TY CỔ PHẦN DỊCH VỤ DU LỊCH PHÚ THỌ tổ chức chào giá cạnh tranh lựa chọn đơn vị Cung cấp nước đá để chế tác Băng Đăng tại Công viên Văn hóa Đầm Sen.</div>
+                      <div class="blog_swiper_content_title">{{ $article->title }}</div>
+                      <div class="blog_swiper_subtitle">{!! $article->content !!}</div>
                     </div>
                   </div>
-              </div>
-
-              <div class="swiper-slide swiper-slide2">
-                <div class="blog_swiper_img">
-                  <img src="{{ asset('images/image_blog2.png') }}" alt="">
-                </div>
-                <div class="blog_swiper_content">
-                  <div class="blog_swiper_content_main">
-                    <div class="blog_swiper_content_title">Thông báo mời chào giá cạnh tranh cung cấp nước đá chế tác Băng Đăng</div>
-                    <div class="blog_swiper_subtitle">THÔNG BÁO MỜI CHÀO GIÁ CẠNH TRANH CÔNG TY CỔ PHẦN DỊCH VỤ DU LỊCH PHÚ THỌ tổ chức chào giá cạnh tranh lựa chọn đơn vị Cung cấp nước đá để chế tác Băng Đăng tại Công viên Văn hóa Đầm Sen.</div>
-                  </div>
-                </div>
-              </div>
+              </a>
+              @endforeach
                 
             </div>
             <!-- Navigation -->
@@ -101,113 +80,27 @@
         <p class="blog_right_title">Bài mới nhất</p>
         <div class="blog_right_main">
 
-          <div class="blog_right_item">
-            <div class="blog_right_item_img">
-              <img src="{{ asset('images/image_blog10.png') }}" alt="">
-            </div>
-            <div class="blog_right_item_content">
-              <div class="blog_right_item_content_center">
-                <div class="blog_right_item_content_title">Thông báo đấu giá giữ xe tại CVHH Đầm Sen</div>
-                <div class="blog_right_item_content_status">
-                  <span>10k views</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="3" height="4" viewBox="0 0 3 4" fill="none">
-                    <circle cx="1.5" cy="2" r="1.5" fill="#858585"/>
-                  </svg>
-                  <span>20/02/2022</span>
+          @foreach ($latestArticlesNext10 as $article)
+            <a href="{{ route('blog.detail', ['id' => $article->id]) }}" class="blog_right_item">
+              <div class="blog_right_item_img">
+                <img src="{{ asset('images/'.$article->image) }}" alt="">
+              </div>
+              <div class="blog_right_item_content">
+                <div class="blog_right_item_content_center">
+                  <div class="blog_right_item_content_title">{{ $article->title }}</div>
+                  <div class="blog_right_item_content_status">
+                    <span>{{ $article->views }} views</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="3" height="4" viewBox="0 0 3 4" fill="none">
+                      <circle cx="1.5" cy="2" r="1.5" fill="#858585"/>
+                    </svg>
+                    <span>{{ \Carbon\Carbon::parse($article->date)->format('d/m/Y') }}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </a>
+          @endforeach
 
-          <div class="blog_right_item">
-            <div class="blog_right_item_img">
-              <img src="{{ asset('images/image_blog11.png') }}" alt="">
-            </div>
-            <div class="blog_right_item_content">
-              <div class="blog_right_item_content_center">
-                <div class="blog_right_item_content_title">Thông báo đấu giá giữ xe tại CVHH Đầm Sen</div>
-                <div class="blog_right_item_content_status">
-                  <span>10k views</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="3" height="4" viewBox="0 0 3 4" fill="none">
-                    <circle cx="1.5" cy="2" r="1.5" fill="#858585"/>
-                  </svg>
-                  <span>20/02/2022</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="blog_right_item">
-            <div class="blog_right_item_img">
-              <img src="{{ asset('images/image_blog12.png') }}" alt="">
-            </div>
-            <div class="blog_right_item_content">
-              <div class="blog_right_item_content_center">
-                <div class="blog_right_item_content_title">Thông báo đấu giá giữ xe tại CVHH Đầm Sen</div>
-                <div class="blog_right_item_content_status">
-                  <span>10k views</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="3" height="4" viewBox="0 0 3 4" fill="none">
-                    <circle cx="1.5" cy="2" r="1.5" fill="#858585"/>
-                  </svg>
-                  <span>20/02/2022</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="blog_right_item">
-            <div class="blog_right_item_img">
-              <img src="{{ asset('images/image_blog13.png') }}" alt="">
-            </div>
-            <div class="blog_right_item_content">
-              <div class="blog_right_item_content_center">
-                <div class="blog_right_item_content_title">Thông báo đấu giá giữ xe tại CVHH Đầm Sen</div>
-                <div class="blog_right_item_content_status">
-                  <span>10k views</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="3" height="4" viewBox="0 0 3 4" fill="none">
-                    <circle cx="1.5" cy="2" r="1.5" fill="#858585"/>
-                  </svg>
-                  <span>20/02/2022</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="blog_right_item">
-            <div class="blog_right_item_img">
-              <img src="{{ asset('images/image_blog14.png') }}" alt="">
-            </div>
-            <div class="blog_right_item_content">
-              <div class="blog_right_item_content_center">
-                <div class="blog_right_item_content_title">Thông báo đấu giá giữ xe tại CVHH Đầm Sen</div>
-                <div class="blog_right_item_content_status">
-                  <span>10k views</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="3" height="4" viewBox="0 0 3 4" fill="none">
-                    <circle cx="1.5" cy="2" r="1.5" fill="#858585"/>
-                  </svg>
-                  <span>20/02/2022</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="blog_right_item">
-            <div class="blog_right_item_img">
-              <img src="{{ asset('images/image_blog15.png') }}" alt="">
-            </div>
-            <div class="blog_right_item_content">
-              <div class="blog_right_item_content_center">
-                <div class="blog_right_item_content_title">Thông báo đấu giá giữ xe tại CVHH Đầm Sen</div>
-                <div class="blog_right_item_content_status">
-                  <span>10k views</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="3" height="4" viewBox="0 0 3 4" fill="none">
-                    <circle cx="1.5" cy="2" r="1.5" fill="#858585"/>
-                  </svg>
-                  <span>20/02/2022</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          
 
         </div>
       </div>
@@ -226,7 +119,7 @@
         
         <ul>
           @foreach ($topics as $topic)
-          <li class="blog_main_left_item blog_main_left_item">
+          <li class="blog_main_left_item {{ request('topic') == $topic->id ? 'blog_main_left_item--active' : '' }}">
             <a href="?topic={{ $topic->id }}">
               {!! $topic->icon !!}
               <span>{{ $topic->name }}</span>
@@ -269,7 +162,7 @@
 
           @foreach ($articles as $article)
           
-          <a href="detailblog" class="blog_main_list_item">
+          <a href="{{ route('blog.detail', ['id' => $article->id]) }}" class="blog_main_list_item">
             <img src="{{ asset('images/'.$article->image) }}" alt="{{ $article->title }}" class="blog_main_list_item_img">
             <div class="blog_main_list_item_content">
               <div class="blog_main_list_item_content_author">

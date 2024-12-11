@@ -1,18 +1,21 @@
 import './bootstrap';
 import 'bootstrap';
-
 var swiper = new Swiper(".mySwiper", {
+  loop: true,
   slidesPerView: 5,
   spaceBetween: -30,
-  loop: true,
   centeredSlides: true,
   slideActiveClass: "active-slide",
+  loopedSlides: 5,
+  initialSlide: 2,
   slideToClickedSlide: true,
   on: {
+    // Lắng nghe sự kiện chuyển slide kết thúc
     transitionEnd: function () {
-      // Loại bỏ class cũ
+      // Loại bỏ class cũ từ các slide
+      // Loại bỏ các class cũ khỏi tất cả các slide
       document.querySelectorAll(".swiper-slide").forEach((slide) => {
-        slide.classList.remove("swiper-slide-prev1","swiper-slide-next1");
+        slide.classList.remove("swiper-slide-prev1", "swiper-slide-next1");
       });
 
       // Lấy slide hiện tại (active) và slide liền kề trước
@@ -21,14 +24,21 @@ var swiper = new Swiper(".mySwiper", {
         const prevSlide = activeSlide.previousElementSibling?.previousElementSibling;
         const nextSlide = activeSlide.nextElementSibling?.nextElementSibling;
 
-        // Thêm class `previous` và `next` vào các slide liền kề
+
+        // Thêm class `swiper-slide-prev1` và `swiper-slide-next1` vào các slide liền kề
         if (prevSlide) prevSlide.classList.add("swiper-slide-prev1");
         if (nextSlide) nextSlide.classList.add("swiper-slide-next1");
       }
-      
     },
-  },
+  }
 });
+
+// Xử lý sự kiện click vào slide (nên đặt ngoài `on` của Swiper)
+swiper.on('click', function (e) {
+  const clickedIndex = swiper.clickedIndex; // Lấy chỉ số của slide vừa click
+  swiper.slideTo(clickedIndex); // Di chuyển đến slide đã click
+});
+
 
 // Swiper 2
 var swiper2 = new Swiper(".mySwiper2", {
@@ -46,7 +56,6 @@ var swiper2 = new Swiper(".mySwiper2", {
 });
 
 var swiper = new Swiper(".mySwiper2", {
-  loop:true,
   pagination: {
     el: ".mySwiper2-pagination",
     clickable: true,

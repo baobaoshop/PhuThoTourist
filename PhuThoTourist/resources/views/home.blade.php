@@ -51,36 +51,11 @@
         </div>
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
+              @foreach ($latestArticlesTop5 as $article)
               <div class="swiper-slide">
-                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
+                <img class="swiper-slide-home-img" src="{{ asset('images/'.$article->image) }}" alt="">
               </div>
-              <div class="swiper-slide">
-                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
-              </div>
-              <div class="swiper-slide">
-                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
-              </div>
-              <div class="swiper-slide">
-                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
-              </div>
-              <div class="swiper-slide">
-                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
-              </div>
-              <div class="swiper-slide">
-                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
-              </div>
-              <div class="swiper-slide">
-                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
-              </div>
-              <div class="swiper-slide">
-                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
-              </div>
-              <div class="swiper-slide">
-                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
-              </div>
-              <div class="swiper-slide">
-                <img class="swiper-slide-home-img" src="{{ asset('images/image_blog1.jpeg') }}" alt="">
-              </div>
+              @endforeach
             </div>
             <div class="swiper-pagination"></div>
           </div>
@@ -130,8 +105,10 @@
     </div>
     <div class="home_blog_main">
 
-      <div class="home_blog_main_item">
-        <img src="{{ asset('images/image_blog4.png') }}" alt="" class="home_blog_main_item_img">
+      @foreach ($latestArticlesTop3 as $article)
+
+      <a href="{{ route('blog.detail', ['id' => $article->id]) }}" class="home_blog_main_item">
+        <img src="{{ asset('images/'.$article->image) }}" alt="" class="home_blog_main_item_img">
         <div class="home_blog_main_item_content">
           <div class="home_blog_main_item_content_author">
             <span>Admin </span>
@@ -139,77 +116,26 @@
               <circle cx="4" cy="4.5" r="4" fill="#03A600"/>
             </svg>
           </div>
-          <div class="home_blog_main_item_content_title">Thông báo kết quả lựa chọn nhà thầu 2 màn hình Led P4 Outdoor Fullcolor</div>
-          <div class="home_blog_main_item_content_subtitle">Công ty Cổ phần Dịch vụ Du lịch Phú Thọ thông báo đến các nhà thầu tham gia chào hàng cạnh tranh Gói thầu: Cung cấp, lắp đặt 02 màn...</div>
+          <div class="home_blog_main_item_content_title">{{ $article->title }}</div>
+          <div class="home_blog_main_item_content_subtitle">{!! $article->content !!}</div>
           <div class="home_blog_main_item_content_label">
-            <div class="home_blog_main_item_content_label_item">Sự kiện</div>
-            <div class="home_blog_main_item_content_label_item">Thông báo</div>
-            <div class="home_blog_main_item_content_label_item">Tin tức</div>
+            @if ($article->topics->count() > 0)
+                  @foreach ($article->topics as $topic)
+                    <div class="home_blog_main_item_content_label_item">{{ $topic->name }}</div>
+                  @endforeach
+                @endif
           </div>
           <div class="home_blog_main_item_content_status">
-            <p>10N lượt xem</p>
+            <p>{{ $article->views }} lượt xem</p>
             <svg xmlns="http://www.w3.org/2000/svg" width="3" height="3" viewBox="0 0 3 3" fill="none">
               <circle cx="1.5" cy="1.5" r="1.5" fill="#858585"/>
             </svg>
-            <p>20/02/2022</p>
+            <p>{{ \Carbon\Carbon::parse($article->date)->format('d/m/Y') }}</p>
           </div>
-
         </div>
-      </div>
+      </a>
+      @endforeach
 
-      <div class="home_blog_main_item">
-        <img src="{{ asset('images/image_blog5.png') }}" alt="" class="home_blog_main_item_img">
-        <div class="home_blog_main_item_content">
-          <div class="home_blog_main_item_content_author">
-            <span>Admin</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="9" viewBox="0 0 8 9" fill="none">
-              <circle cx="4" cy="4.5" r="4" fill="#03A600"/>
-            </svg>
-          </div>
-          <div class="home_blog_main_item_content_title">Thông báo kết quả lựa chọn nhà thầu 2 màn hình Led P4 Outdoor Fullcolor</div>
-          <div class="home_blog_main_item_content_subtitle">Công ty Cổ phần Dịch vụ Du lịch Phú Thọ thông báo đến các nhà thầu tham gia chào hàng cạnh tranh Gói thầu: Cung cấp, lắp đặt 02 màn...</div>
-          <div class="home_blog_main_item_content_label">
-            <div class="home_blog_main_item_content_label_item">Sự kiện</div>
-            <div class="home_blog_main_item_content_label_item">Thông báo</div>
-            <div class="home_blog_main_item_content_label_item">Tin tức</div>
-          </div>
-          <div class="home_blog_main_item_content_status">
-            <p>10N lượt xem</p>
-            <svg xmlns="http://www.w3.org/2000/svg" width="3" height="3" viewBox="0 0 3 3" fill="none">
-              <circle cx="1.5" cy="1.5" r="1.5" fill="#858585"/>
-            </svg>
-            <p>20/02/2022</p>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="home_blog_main_item">
-        <img src="{{ asset('images/image_blog6.png') }}" alt="" class="home_blog_main_item_img">
-        <div class="home_blog_main_item_content">
-          <div class="home_blog_main_item_content_author">
-            <span>Admin</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="9" viewBox="0 0 8 9" fill="none">
-              <circle cx="4" cy="4.5" r="4" fill="#03A600"/>
-            </svg>
-          </div>
-          <div class="home_blog_main_item_content_title">Thông báo kết quả lựa chọn nhà thầu 2 màn hình Led P4 Outdoor Fullcolor</div>
-          <div class="home_blog_main_item_content_subtitle">Công ty Cổ phần Dịch vụ Du lịch Phú Thọ thông báo đến các nhà thầu tham gia chào hàng cạnh tranh Gói thầu: Cung cấp, lắp đặt 02 màn...</div>
-          <div class="home_blog_main_item_content_label">
-            <div class="home_blog_main_item_content_label_item">Sự kiện</div>
-            <div class="home_blog_main_item_content_label_item">Thông báo</div>
-            <div class="home_blog_main_item_content_label_item">Tin tức</div>
-          </div>
-          <div class="home_blog_main_item_content_status">
-            <p>10N lượt xem</p>
-            <svg xmlns="http://www.w3.org/2000/svg" width="3" height="3" viewBox="0 0 3 3" fill="none">
-              <circle cx="1.5" cy="1.5" r="1.5" fill="#858585"/>
-            </svg>
-            <p>20/02/2022</p>
-          </div>
-
-        </div>
-      </div>
     </div>
     <div class="home_blog_footer">
       <div class="home_blog_button"> Xem thêm bài viết </div>
