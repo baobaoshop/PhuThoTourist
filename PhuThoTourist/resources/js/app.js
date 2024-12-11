@@ -34,7 +34,7 @@ var swiper = new Swiper(".mySwiper", {
 var swiper2 = new Swiper(".mySwiper2", {
   loop: true,
   slidesPerView: 1, 
-  spaceBetween: 10,
+  spaceBetween: 0,
   navigation: {
       nextEl: ".mySwiper2-button-next",
       prevEl: ".mySwiper2-button-prev",
@@ -46,6 +46,7 @@ var swiper2 = new Swiper(".mySwiper2", {
 });
 
 var swiper = new Swiper(".mySwiper2", {
+  loop:true,
   pagination: {
     el: ".mySwiper2-pagination",
     clickable: true,
@@ -59,6 +60,10 @@ var swiper = new Swiper(".mySwiper2", {
           </svg>
         </span>`;
     },
+  },
+  navigation: {
+    nextEl: ".mySwiper2-button-next",
+    prevEl: ".mySwiper2-button-prev",
   },
 });
 
