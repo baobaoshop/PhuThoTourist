@@ -8,34 +8,19 @@
 <ul>
   <li>[x] Tìm hiểu nghiệp vụ</li>
   <li>[x] Thiết kế database</li>
-  <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjw4BCzz4rfPdUkrHTiU747Q_wjn361_tIXcllLYdcSjK4Hj-ZsW6SQ9JSBJtzS1bzz7OYjIrBh0ozfyUrmfC7yPBP7k4K_AvY01MovUPL6IPvSjz3CwR4BvrnjOh9CzQAy5JM-I2Pq5WQXt8QKCf8H8CrlechZSAV79b0tYEnRbdYIukRse3F3EW8N" heigh=300 width=300/>
   <li>[x] Thiết kế giao diện</li>
   <li>[x] Chức năng Tài liệu</li>
   <li>[x] Chức năng Tuyển dụng</li>
-  <li>[ ] Chức năng Bài viết</li>
+  <li>[x] Chức năng Bài viết</li>
 </ul>
-<hr/>
-
-<h3>Giới thiệu</h3>
-<ol>
-  <li>Mục đích</li>
-  <li>Các vấn đề cần giải quyết</li>
-  <li>Các tính năng:
-    <ul>
-      <li>Trang chủ:</li>
-      <li>Bài viết:</li>  
-      <li>Tài liệu:</li>  
-      <li>Tuyển dụng:</li>  
-    </ul>
-  </li>
-</ol>
-<img src="https://lh4.googleusercontent.com/proxy/scUVF0bDoWmauk4D9M9K6aIiN5guTgsVc5_F8g-zQnsmIpFs7q152ZRNZDEL8-4t5XWshfvGZaa2omdz9bwHfR1kQn1vMcaTTA0o5KsL4JHeL3XSmOr5cj7Dq7460cXcjbW2" heigh=300 width=300/>
 <hr/>
 
 <h3>Installation</h3>
 <ol>
   <li>Clone the repository: <a href="https://github.com/baobaoshop/PhuThoTourist.git">https://github.com/baobaoshop/PhuThoTourist.git</a></li>
-  <li>Start project: php artisan serve</li>
+  <li>Cài composer: composer install</li>
+  <li>Chạy project: php artisan serve</li>
+  <li>Chạy biên dịch frontend (CSS, JavaScript): php run dev</li>
 </ol>
 <hr/>
 
