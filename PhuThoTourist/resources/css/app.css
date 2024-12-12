@@ -1053,6 +1053,7 @@
     flex-direction: column;
 }
 .blog_swiper_content {
+    height: 150px;
     background-color: #fff;
 }
 .blog_swiper_content_main {

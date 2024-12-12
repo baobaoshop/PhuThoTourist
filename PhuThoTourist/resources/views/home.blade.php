@@ -52,9 +52,9 @@
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
               @foreach ($latestArticlesTop5 as $article)
-              <div class="swiper-slide">
+              <a href="{{ route('blog.detail', ['id' => $article->id]) }}" class="swiper-slide">
                 <img class="swiper-slide-home-img" src="{{ asset('images/'.$article->image) }}" alt="">
-              </div>
+              </a>
               @endforeach
             </div>
             <div class="swiper-pagination"></div>
@@ -82,7 +82,7 @@
             <li>Liên kết với Công viên nước Đầm Sen (Đầm Sen Water Park).</li>
           </ul>
       </div>
-      <button class="home_about_left_button">Xem chi tiết</button>
+      <a href="{{ route('articles.index') }}" class="home_about_left_button">Xem chi tiết</a>
     </div>
     <div class="home_about_right">
       <img class="home_about_right_img1" src="{{ asset('images/image_blog2.png') }}" alt="">
@@ -138,7 +138,7 @@
 
     </div>
     <div class="home_blog_footer">
-      <div class="home_blog_button"> Xem thêm bài viết </div>
+      <a href="{{ route('articles.index') }}" class="home_blog_button"> Xem thêm bài viết </a>
     </div>
   </div>
   <div class="home_service">
