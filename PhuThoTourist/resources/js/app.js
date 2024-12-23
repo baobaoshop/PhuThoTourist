@@ -76,3 +76,37 @@ var swiper = new Swiper(".mySwiper2", {
   },
 });
 
+document.getElementById('hamburgerBtn').addEventListener('click', () => {
+  document.getElementById('menu').style.display = 'flex';
+});
+
+document.getElementById('closeBtn').addEventListener('click', () => {
+  document.getElementById('menu').style.display = 'none';
+});
+
+
+
+document.getElementById('fillBtn').addEventListener('click', () => {
+  document.getElementById('blog_menu').style.display = 'block';
+
+  const dateStartInput = document.getElementById('start_date_mobile');
+  function updateURL() {
+      const dateStart = dateStartInput.value;
+      let url = new URL(window.location.href);
+
+      // Cập nhật query parameters
+      if (dateStart) {
+          url.searchParams.set('start_date', dateStart);
+      } else {
+          url.searchParams.delete('start_date');
+      }
+
+
+      // Điều hướng tới URL mới
+      window.location.href = url.toString();
+  }
+
+  // Lắng nghe sự thay đổi của các input
+  dateStartInput.addEventListener('change', updateURL);
+});
+

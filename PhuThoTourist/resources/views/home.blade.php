@@ -85,8 +85,10 @@
       <a href="{{ route('articles.index') }}" class="home_about_left_button">Xem chi tiết</a>
     </div>
     <div class="home_about_right">
-      <img class="home_about_right_img1" src="{{ asset('images/image_blog2.png') }}" alt="">
-      <img class="home_about_right_img2" src="{{ asset('images/image_blog3.png') }}" alt="">
+      <div class="home_about_right_pic">
+        <img class="home_about_right_img1" src="{{ asset('images/image_blog2.png') }}" alt="">
+        <img class="home_about_right_img2" src="{{ asset('images/image_blog3.png') }}" alt="">
+      </div>
     </div>
   </div>
   <div class="home_blog">
