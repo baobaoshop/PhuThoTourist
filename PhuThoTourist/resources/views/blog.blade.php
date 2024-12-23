@@ -129,6 +129,7 @@
         </ul>
       </div>
       <div class="blog_main_right">
+
         <div class="blog_main_search">
           <div class="blog_main_search_left">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -147,17 +148,64 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="6" height="8" viewBox="0 0 6 8" fill="none">
               <path d="M5.51129 3.13807L3.96467 2.01241L1.44455 0.178209C0.910697 -0.20463 0 0.0696425 0 0.618188V4.17802V7.38359C0 7.93213 0.910697 8.20641 1.44455 7.81785L5.51129 4.85799C6.1629 4.38944 6.1629 3.61233 5.51129 3.13807Z" fill="#0054A6"/>
             </svg>
-            <input type="date" id="end_date" name="end_date" value="{{ request('end_date', $end_date) }}">
-            <div class="blog_main_filter">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M7 4V20M7 20L3 16M7 20L11 16M17 4V20M17 4L21 8M17 4L13 8" stroke="#0054A6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <button type="submit" name="sort" value="{{ request('sort') == 'asc' ? 'desc' : 'asc' }}">
-              {{ request('sort') == 'asc' ? 'Z đến A' : 'A đến Z' }}
+            <input class="blog_main_search_right_dateend" type="date" id="end_date" name="end_date" value="{{ request('end_date', $end_date) }}">
+            <button class="blog_main_search_right_fill" type="submit" name="sort" value="{{ request('sort') == 'asc' ? 'desc' : 'asc' }}">
+              @if (request('sort') == 'asc')
+              <i class="fa-solid fa-arrow-up-a-z"></i>
+              @else
+              <i class="fa-solid fa-arrow-down-a-z"></i>
+              @endif
+              
             </button>
           </div>
         </div>
+
+        <div class="blog_main_search blog_main_search__mobile">
+          <div class="blog_main_search_left">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M17.2959 17.3333L21.2959 21.3333" stroke="#0054A6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M19.2959 11.3333C19.2959 15.7516 15.7142 19.3333 11.2959 19.3333C6.87762 19.3333 3.2959 15.7516 3.2959 11.3333C3.2959 6.91497 6.87762 3.33325 11.2959 3.33325C15.7142 3.33325 19.2959 6.91497 19.2959 11.3333Z" stroke="#0054A6" stroke-width="2"/>
+            </svg>
+            <input 
+              type="text" 
+              name="search" 
+              placeholder="Tìm kiếm" 
+              value="{{ request('search') }}" 
+              onkeyup="if(event.keyCode === 13) this.form.submit()">
+          </div>
+          <div class="blog_main_search_right">
+            
+            <button class="blog_main_search_right_fill" type="submit" name="sort" value="{{ request('sort') == 'asc' ? 'desc' : 'asc' }}">
+              @if (request('sort') == 'asc')
+              <i class="fa-solid fa-arrow-up-a-z"></i>
+              @else
+              <i class="fa-solid fa-arrow-down-a-z"></i>
+              @endif
+              
+            </button>
+            <button id="fillBtn" class="blog_main_search_right_fill" type="button"><i class="fa-solid fa-sliders"></i></button>
+          </div>
+        </div>
+        <div class="blog_menu" id="blog_menu">
+          <div class="blog_menu_topics">
+            <div class="blog_menu_topics_title">Chủ đề bài viết</div>
+            <div class="blog_menu_topics_main">
+                @foreach ($topics as $topic)
+                <div class="blog_main_left_item {{ request('topic') == $topic->id ? 'blog_main_left_item--active' : '' }}">
+                  <a href="?topic={{ $topic->id }}">
+                    {!! $topic->icon !!}
+                    <span>{{ $topic->name }}</span>
+                  </a>
+                </div>
+                @endforeach
+            </div>
+          </div>
+          <div class="blog_menu_time">
+            <div class="blog_menu_topics_title">Thời gian</div>
+            <input type="date" id="start_date_mobile" name="start_date" value="{{ request('start_date', $start_date) }}">
+          </div>
+        </div>
+        
         <div class="blog_main_list">
 
           @foreach ($articles as $article)

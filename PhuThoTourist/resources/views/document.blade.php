@@ -95,6 +95,17 @@
                         onkeyup="if(event.keyCode === 13) this.form.submit()">
                     </form>
                 </div>
+                <button id="docFillBtn" class="document_fill" type="button"><i class="fa-solid fa-sliders"></i></button>
+            </div>
+            
+        </div>
+        <div class="document_menu" id="document_menu">
+            <div class="blog_menu_time">
+              <div class="blog_menu_topics_title">Thời gian</div>
+              <div class="doc_main_top_left_date">
+                <input type="date" id="date_start_mobile" name="date_start" value="{{ request('date_start', $date_start) }}">
+                
+            </div>
             </div>
         </div>
         <div class="doc_main_table">
@@ -142,37 +153,6 @@
                     {{ $documents_10->links('pagination::default') }}
                 
                 
-                {{-- <div class="doc_main_panigation">
-                    <div class="doc_main_panigation_item">
-                      <a href="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                          <path d="M13.5 15L7.5 10L13.5 5" fill="#A3A3A3"/>
-                          <path d="M13.5 15L7.5 10L13.5 5L13.5 15Z" stroke="#A3A3A3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </a>
-                    </div>
-                    <div class="doc_main_panigation_main">
-                      <div class="doc_main_panigation_item doc_main_panigation_item--active">
-                        <a href="">1</a>
-                      </div>
-                      <div class="doc_main_panigation_item">
-                        <a href="">2</a>
-                      </div>
-                      <div class="">...</div>
-                      <div class="doc_main_panigation_item">
-                        <a href="">10</a>
-                      </div>
-                    </div>
-                    <div class="doc_main_panigation_item">
-                      <a href="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                          <path d="M7.5 15L13.5 10L7.5 5" fill="#4D4D4D"/>
-                          <path d="M7.5 15L13.5 10L7.5 5L7.5 15Z" stroke="#4D4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </a>
-                    </div>
-          
-                </div> --}}
             </div>
         </div>
     </div>
@@ -209,6 +189,29 @@
         dateStartInput.addEventListener('change', updateURL);
         dateEndInput.addEventListener('change', updateURL);
     });
+
+    document.getElementById('docFillBtn').addEventListener('click', () => {
+        document.getElementById('document_menu').style.display = 'block';
+
+        const dateStartInput = document.getElementById('date_start_mobile');
+        function updateURL() {
+            const dateStart = dateStartInput.value;
+            let url = new URL(window.location.href);
+
+            // Cập nhật query parameters
+            if (dateStart) {
+                url.searchParams.set('date_start', dateStart);
+            } else {
+                url.searchParams.delete('date_start');
+            }
+            // Điều hướng tới URL mới
+            window.location.href = url.toString();
+        }
+
+        // Lắng nghe sự thay đổi của các input
+        dateStartInput.addEventListener('change', updateURL);
+    });
+    
 </script>
 
 @endsection
